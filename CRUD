@@ -1,0 +1,111 @@
+Why are CRUD operations so important?
+You can’t interact with databases without using CRUD. CRUD is essential for anything requiring persistent storage. Without CRUD, web developers wouldn’t be able to use REST (Representational State Transfer), which is a superset of CRUD used to access HTTP resources. REST APIs are some of the most commonly used in web development.
+
+Basically, software developers wouldn’t be able to complete any project requiring persistent storage without CRUD operations.
+
+On the other end, CRUD is just as crucial for end-users as it is for application developers. The end-users access CRUD operations through an application’s interface. Without CRUD, actions like registering for websites, creating blogs, or using bookmarks would be impossible.
+
+Benefits of CRUD
+
+**Facilitates security control by satisfying the various access requirements
+**Simplifies application design and makes it more scalable
+**Better performance compared to ad-hoc SQL statements
+
+
+
+
+CRUD refers to the four basic operations a software application should be able to perform 
+1.Create
+CREATE procedures: Performs the INSERT statement to create a new record in SQL databases.
+
+2.Read
+READ procedures: Reads the table records based on the primary keynoted within the input parameter.
+
+3.Update 
+UPDATE procedures: Executes an UPDATE statement on the table based on the specified primary key for a record within the WHERE clause of the statement.
+
+4.Delete
+DELETE procedures: Deletes a specified row in the WHERE clause.
+
+
+1. Create:
+In CRUD operations, 'C' is an acronym for create, which means to add or insert data into the SQL table. So, firstly we will create a table using CREATE command and then we will use the INSERT INTO command to insert rows in the created table.
+
+Syntax for table creation:
+CREATE TABLE Table_Name (ColumnName1 Datatype, ColumnName2 Datatype,..., ColumnNameN Datatype); 
+
+2. Read:
+In CRUD operations, 'R' is an acronym for read, which means retrieving or fetching the data from the SQL table. So, we will use the SELECT command to fetch the inserted records from the SQL table. We can retrieve all the records from a table using an asterisk (*) in a SELECT query. There is also an option of retrieving only those records which satisfy a particular condition by using the WHERE clause in a SELECT query.
+
+Syntax to fetch all the records:
+
+SELECT *FROM TableName;  
+
+3. Update:
+In CRUD operations, 'U' is an acronym for the update, which means making updates to the records present in the SQL tables. So, we will use the UPDATE command to make changes in the data present in tables.
+
+Syntax:
+UPDATE Table_Name SET ColumnName = Value WHERE CONDITION;   
+
+4. Delete:
+In CRUD operations, 'D' is an acronym for delete, which means removing or deleting the records from the SQL tables. We can delete all the rows from the SQL tables using the DELETE query. There is also an option to remove only the specific records that satisfy a particular condition by using the WHERE clause in a DELETE query.
+
+Syntax to delete all the records:
+
+DELETE FROM TableName;  
+
+
+
+An application designer has many options for executing CRUD operations. One of the most efficient of choices is to create a set of stored procedures in SQL to execute operations.
+
+Here’s an example SQL procedure for CRUD operations on customer data.
+
+-- CREATE PROCEDURE
+CREATE PROCEDURE insert_customer (
+    IN first_name VARCHAR(50),
+    IN last_name VARCHAR(50),
+    IN email VARCHAR(100),
+    IN phone VARCHAR(20),
+    IN address VARCHAR(200)
+)
+BEGIN
+    INSERT INTO customers (first_name, last_name, email, phone, address)
+    VALUES (first_name, last_name, email, phone, address);
+END;
+
+-- READ PROCEDURE
+CREATE PROCEDURE select_customer (
+    IN id INT
+)
+BEGIN
+    SELECT * FROM customers
+    WHERE customer_id = id;
+END;
+
+-- UPDATE PROCEDURE
+CREATE PROCEDURE update_customer (
+    IN id INT,
+    IN first_name VARCHAR(50),
+    IN last_name VARCHAR(50),
+    IN email VARCHAR(100),
+    IN phone VARCHAR(20),
+    IN address VARCHAR(200)
+)
+BEGIN
+    UPDATE customers
+    SET first_name = first_name,
+        last_name = last_name,
+        email = email,
+        phone = phone,
+        address = address
+    WHERE customer_id = id;
+END;
+
+-- DELETE PROCEDURE
+CREATE PROCEDURE delete_customer (
+    IN id INT
+)
+BEGIN
+    DELETE FROM customers
+    WHERE customer_id = id;
+END;
